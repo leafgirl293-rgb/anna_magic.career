@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>莉安娜 · 職涯諮詢師 — 讓我陪你走一段</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FDF6EE;
+    --cream-dark: #F5EBD8;
+    --blush: #F2C4C4;
+    --blush-light: #FAE0E0;
+    --blush-dark: #E8A5A5;
+    --sky: #B8D8E8;
+    --sky-light: #DCF0F8;
+    --sky-deep: #7EB8D4;
+    --navy: #2C3E6B;
+    --navy-light: #3D5296;
+    --sage: #B8D4B8;
+    --sage-light: #D8EDD8;
+    --lavender: #D4C8E8;
+    --gold: #E8C87A;
+    --text-dark: #2C2C2C;
+    --text-mid: #5A5A6A;
+    --text-light: #8A8A9A;
+    --border: 2.5px solid var(--navy);
+    --radius: 20px;
+    --radius-lg: 32px;
+    --shadow: 4px 6px 0px var(--navy);
+    --shadow-sm: 3px 4px 0px var(--navy);
+    --font: 'Kiwi Maru', serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font);
+    background-color: var(--cream);
+    color: var(--text-dark);
+    overflow-x: hidden;
+    line-height: 1.8;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(253,246,238,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 2px solid var(--navy);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+
+  .nav-logo {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--navy);
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .nav-logo span { font-size: 1.3rem; }
+
+  .nav-links {
+    display: flex;
+    gap: 1.8rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.85rem;
+    color: var(--text-mid);
+    text-decoration: none;
+    transition: color 0.2s;
+    letter-spacing: 0.05em;
+  }
+
+  .nav-links a:hover { color: var(--navy); }
+
+  .nav-cta {
+    background: var(--navy);
+    color: #fff !important;
+    padding: 0.4rem 1.1rem;
+    border-radius: 100px;
+    border: var(--border);
+    box-shadow: var(--shadow-sm);
+    font-size: 0.82rem !important;
+    transition: transform 0.15s, box-shadow 0.15s !important;
+  }
+
+  .nav-cta:hover {
+    transform: translate(-1px, -1px);
+    box-shadow: 5px 6px 0px var(--navy) !important;
+    color: #fff !important;
+  }
+
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+  }
+
+  .hamburger span {
+    display: block;
+    width: 24px;
+    height: 2.5px;
+    background: var(--navy);
+    border-radius: 2px;
+    transition: all 0.3s;
+  }
+
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 64px;
+    left: 0; right: 0;
+    background: var(--cream);
+    border-bottom: 2px solid var(--navy);
+    padding: 1.5rem 2rem;
+    z-index: 99;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    color: var(--text-mid);
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--cream-dark);
+  }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    padding-top: 64px;
+    background: var(--cream);
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg-dots {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, var(--blush) 1.5px, transparent 1.5px),
+                      radial-gradient(circle, var(--sky) 1px, transparent 1px);
+    background-size: 48px 48px, 32px 32px;
+    background-position: 0 0, 16px 16px;
+    opacity: 0.35;
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-text { }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--blush-light);
+    border: var(--border);
+    border-radius: 100px;
+    padding: 0.35rem 1rem;
+    font-size: 0.8rem;
+    color: var(--navy);
+    margin-bottom: 1.5rem;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .hero-title {
+    font-size: clamp(2.2rem, 5vw, 3.2rem);
+    font-weight: 500;
+    line-height: 1.3;
+    color: var(--navy);
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.02em;
+  }
+
+  .hero-title em {
+    font-style: normal;
+    background: linear-gradient(180deg, transparent 55%, var(--gold) 55%);
+    padding: 0 4px;
+  }
+
+  .hero-sub {
+    font-size: 1rem;
+    color: var(--text-mid);
+    margin-bottom: 2rem;
+    line-height: 1.9;
+    max-width: 420px;
+  }
+
+  .hero-btns {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--navy);
+    color: #fff;
+    padding: 0.8rem 2rem;
+    border-radius: 100px;
+    border: var(--border);
+    font-family: var(--font);
+    font-size: 0.95rem;
+    cursor: pointer;
+    box-shadow: var(--shadow);
+    text-decoration: none;
+    display: inline-block;
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+
+  .btn-primary:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 8px 0px var(--navy);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--navy);
+    padding: 0.8rem 1.8rem;
+    border-radius: 100px;
+    border: var(--border);
+    font-family: var(--font);
+    font-size: 0.95rem;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.2s;
+  }
+
+  .btn-secondary:hover { background: var(--blush-light); }
+
+  /* Hero Illustration */
+  .hero-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+
+  .hero-card {
+    background: var(--cream);
+    border: var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 340px;
+    position: relative;
+  }
+
+  .hero-illus {
+    width: 100%;
+    height: auto;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-card-title {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--navy);
+    margin-bottom: 0.5rem;
+  }
+
+  .hero-card-desc {
+    font-size: 0.82rem;
+    color: var(--text-mid);
+    line-height: 1.7;
+  }
+
+  .floating-tag {
+    position: absolute;
+    background: var(--blush);
+    border: var(--border);
+    border-radius: 12px;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.75rem;
+    color: var(--navy);
+    box-shadow: var(--shadow-sm);
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .floating-tag:nth-child(2) { top: -16px; right: -16px; animation-delay: 0.5s; }
+  .floating-tag:nth-child(3) { bottom: -16px; left: -16px; animation-delay: 1s; background: var(--sky-light); }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+
+  /* ── SECTION COMMON ── */
+  section {
+    padding: 80px 2rem;
+  }
+
+  .section-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    color: var(--text-light);
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+  }
+
+  .section-label::before {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 2px;
+    background: var(--blush-dark);
+    border-radius: 2px;
+  }
+
+  .section-title {
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 500;
+    color: var(--navy);
+    line-height: 1.4;
+    margin-bottom: 1rem;
+  }
+
+  .section-desc {
+    color: var(--text-mid);
+    font-size: 0.95rem;
+    line-height: 1.9;
+    max-width: 560px;
+  }
+
+  /* ── ABOUT ── */
+  #about {
+    background: var(--cream-dark);
+    border-top: 2px solid var(--navy);
+    border-bottom: 2px solid var(--navy);
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .about-visual {
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
+
+  .about-frame {
+    width: 280px;
+    height: 320px;
+    background: var(--blush-light);
+    border: var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .about-frame-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 2rem;
+  }
+
+  .about-avatar {
+    width: 120px;
+    height: 120px;
+    background: var(--blush);
+    border: var(--border);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+  }
+
+  .about-name-tag {
+    background: var(--navy);
+    color: #fff;
+    padding: 0.4rem 1.2rem;
+    border-radius: 100px;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+  }
+
+  .about-badge-row {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .chip {
+    background: var(--cream);
+    border: 1.5px solid var(--navy);
+    border-radius: 100px;
+    padding: 0.25rem 0.7rem;
+    font-size: 0.72rem;
+    color: var(--navy);
+  }
+
+  .about-deco {
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    width: 80px;
+    height: 80px;
+    background: var(--sky-light);
+    border: var(--border);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .about-content { }
+
+  .about-quote {
+    background: var(--navy);
+    color: #fff;
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+    line-height: 1.85;
+    border: var(--border);
+    box-shadow: var(--shadow-sm);
+    position: relative;
+  }
+
+  .about-quote::before {
+    content: '✦';
+    font-size: 1.5rem;
+    opacity: 0.4;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .about-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 1.2rem;
+  }
+
+  .tag {
+    background: var(--sage-light);
+    border: 1.5px solid var(--navy);
+    border-radius: 100px;
+    padding: 0.3rem 0.9rem;
+    font-size: 0.8rem;
+    color: var(--navy);
+  }
+
+  /* ── SERVICE ── */
+  #service { background: var(--cream); }
+
+  .service-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .service-card {
+    background: var(--cream);
+    border: var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 2rem 1.8rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 6px;
+    border-radius: var(--radius) var(--radius) 0 0;
+  }
+
+  .service-card:nth-child(1)::before { background: var(--blush); }
+  .service-card:nth-child(2)::before { background: var(--sky); }
+  .service-card:nth-child(3)::before { background: var(--sage); }
+
+  .service-card:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 7px 9px 0px var(--navy);
+  }
+
+  .service-icon {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .service-card h3 {
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--navy);
+    margin-bottom: 0.8rem;
+  }
+
+  .service-card p {
+    font-size: 0.85rem;
+    color: var(--text-mid);
+    line-height: 1.8;
+    margin-bottom: 1rem;
+  }
+
+  .service-tag {
+    background: var(--cream-dark);
+    border: 1.5px solid var(--navy);
+    border-radius: 8px;
+    padding: 0.25rem 0.6rem;
+    font-size: 0.7rem;
+    color: var(--navy);
+    display: inline-block;
+  }
+
+  /* ── PROCESS ── */
+  #process {
+    background: var(--sky-light);
+    border-top: 2px solid var(--navy);
+    border-bottom: 2px solid var(--navy);
+  }
+
+  .process-steps {
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .process-step {
+    background: var(--cream);
+    border: var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    padding: 1.6rem 2rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    transition: transform 0.2s;
+  }
+
+  .process-step:hover { transform: translateX(4px); }
+
+  .step-num {
+    min-width: 48px;
+    height: 48px;
+    background: var(--navy);
+    color: #fff;
+    border-radius: 50%;
+    border: var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    font-weight: 500;
+    flex-shrink: 0;
+  }
+
+  .step-body h3 {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--navy);
+    margin-bottom: 0.4rem;
+  }
+
+  .step-body p {
+    font-size: 0.85rem;
+    color: var(--text-mid);
+    line-height: 1.8;
+  }
+
+  .process-connector {
+    width: 2px;
+    height: 20px;
+    background: var(--blush-dark);
+    margin: 0 auto;
+    opacity: 0.6;
+  }
+
+  /* ── TRUST ── */
+  #trust { background: var(--cream); }
+
+  .trust-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .trust-card {
+    background: var(--cream);
+    border: var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    padding: 1.8rem;
+    text-align: center;
+  }
+
+  .trust-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .trust-card h3 {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--navy);
+    margin-bottom: 0.6rem;
+  }
+
+  .trust-card p {
+    font-size: 0.82rem;
+    color: var(--text-mid);
+    line-height: 1.8;
+  }
+
+  .trust-banner {
+    background: var(--navy);
+    border: var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 2.5rem;
+    margin-top: 2.5rem;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .trust-banner-text h3 {
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.03em;
+  }
+
+  .trust-banner-text p {
+    font-size: 0.85rem;
+    opacity: 0.75;
+    line-height: 1.7;
+  }
+
+  .btn-light {
+    background: var(--cream);
+    color: var(--navy);
+    padding: 0.8rem 2rem;
+    border-radius: 100px;
+    border: var(--border);
+    font-family: var(--font);
+    font-size: 0.9rem;
+    cursor: pointer;
+    box-shadow: var(--shadow-sm);
+    text-decoration: none;
+    display: inline-block;
+    white-space: nowrap;
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+
+  .btn-light:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 6px 0 var(--blush-dark);
+  }
+
+  /* ── CONTACT ── */
+  #contact {
+    background: var(--blush-light);
+    border-top: 2px solid var(--navy);
+  }
+
+  .contact-inner {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .contact-card {
+    background: var(--cream);
+    border: var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    padding: 3rem 2.5rem;
+    margin-top: 2.5rem;
+  }
+
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: var(--cream-dark);
+    border: var(--border);
+    border-radius: var(--radius);
+    padding: 1rem 1.5rem;
+    text-decoration: none;
+    color: var(--text-dark);
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+
+  .contact-link:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 6px 0 var(--navy);
+  }
+
+  .contact-link-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    background: var(--cream);
+    border: var(--border);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .contact-link-body { text-align: left; }
+
+  .contact-link-label {
+    font-size: 0.72rem;
+    color: var(--text-light);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .contact-link-value {
+    font-size: 0.92rem;
+    color: var(--navy);
+    font-weight: 500;
+  }
+
+  .contact-note {
+    margin-top: 1.5rem;
+    font-size: 0.8rem;
+    color: var(--text-light);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy);
+    border-top: 2px solid var(--navy);
+    padding: 2rem;
+    text-align: center;
+    color: rgba(255,255,255,0.5);
+    font-size: 0.78rem;
+    letter-spacing: 0.05em;
+  }
+
+  footer strong { color: rgba(255,255,255,0.8); }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* ── RWD ── */
+  @media (max-width: 768px) {
+    nav { padding: 0 1.2rem; }
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+
+    .hero-inner {
+      grid-template-columns: 1fr;
+      text-align: center;
+      gap: 2rem;
+    }
+
+    .hero-sub { margin: 0 auto 2rem; }
+    .hero-btns { justify-content: center; }
+    .hero-visual { order: -1; }
+
+    .about-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .about-visual { order: -1; }
+    .about-frame { width: 220px; height: 260px; }
+    .about-avatar { width: 90px; height: 90px; font-size: 2.2rem; }
+
+    .service-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .trust-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .trust-banner {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .contact-card { padding: 2rem 1.2rem; }
+
+    section { padding: 60px 1.2rem; }
+  }
+
+  @media (max-width: 480px) {
+    .hero-title { font-size: 1.8rem; }
+    .btn-primary, .btn-secondary { padding: 0.7rem 1.4rem; font-size: 0.88rem; }
+    .hero-card { padding: 1.5rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .floating-tag { animation: none; }
+    .reveal { opacity: 1; transform: none; transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <span>✦</span> 莉安娜職涯
+  </div>
+  <ul class="nav-links">
+    <li><a href="#about">關於我</a></li>
+    <li><a href="#service">服務項目</a></li>
+    <li><a href="#process">合作流程</a></li>
+    <li><a href="#trust">我的特色</a></li>
+    <li><a href="#contact" class="nav-cta">預約諮詢</a></li>
+  </ul>
+  <div class="hamburger" onclick="toggleMenu()" aria-label="選單">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about" onclick="closeMenu()">關於我</a>
+  <a href="#service" onclick="closeMenu()">服務項目</a>
+  <a href="#process" onclick="closeMenu()">合作流程</a>
+  <a href="#trust" onclick="closeMenu()">我的特色</a>
+  <a href="#contact" onclick="closeMenu()">✦ 預約諮詢</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-dots"></div>
+  <div class="hero-inner">
+    <div class="hero-text reveal">
+      <div class="hero-badge">✦ 職涯諮詢師 · 莉安娜</div>
+      <h1 class="hero-title">
+        你不是迷路，<br>
+        你只是還沒<em>找到方向</em>
+      </h1>
+      <p class="hero-sub">
+        正站在職涯轉彎處的你、還不知道該往哪走的你——<br>
+        我願意先聽，再陪你找到屬於你的那條路。
+      </p>
+      <div class="hero-btns">
+        <a href="#contact" class="btn-primary">✉ 預約免費初談</a>
+        <a href="#about" class="btn-secondary">認識莉安娜 →</a>
+      </div>
+    </div>
+    <div class="hero-visual reveal">
+      <div style="position:relative;">
+        <div class="floating-tag" style="top:-18px; right:-18px;">🌿 職涯探索</div>
+        <div class="floating-tag" style="bottom:-18px; left:-18px; background:var(--sky-light);">✨ 求職輔導</div>
+        <div class="hero-card">
+          <!-- Inline SVG Illustration -->
+          <svg class="hero-illus" viewBox="0 0 280 220" xmlns="http://www.w3.org/2000/svg">
+            <!-- Background shape -->
+            <ellipse cx="140" cy="190" rx="110" ry="18" fill="#E8A5A5" opacity="0.25"/>
+            <!-- Stars / sparkles -->
+            <text x="220" y="38" font-size="16" fill="#E8C87A">✦</text>
+            <text x="28" y="55" font-size="10" fill="#7EB8D4">✦</text>
+            <text x="195" y="155" font-size="8" fill="#B8D4B8">✦</text>
+            <!-- Lantern / magic lamp -->
+            <rect x="110" y="80" width="60" height="80" rx="14" fill="#FAE0E0" stroke="#2C3E6B" stroke-width="2.5"/>
+            <rect x="118" y="70" width="44" height="16" rx="8" fill="#F2C4C4" stroke="#2C3E6B" stroke-width="2"/>
+            <rect x="132" y="60" width="16" height="14" rx="4" fill="#E8A5A5" stroke="#2C3E6B" stroke-width="2"/>
+            <!-- Compass window on lantern -->
+            <circle cx="140" cy="120" r="18" fill="#DCF0F8" stroke="#2C3E6B" stroke-width="2"/>
+            <line x1="140" y1="104" x2="140" y2="136" stroke="#2C3E6B" stroke-width="1.5"/>
+            <line x1="124" y1="120" x2="156" y2="120" stroke="#2C3E6B" stroke-width="1.5"/>
+            <polygon points="140,106 137,114 143,114" fill="#E8A5A5"/>
+            <!-- Path/road below -->
+            <path d="M40 180 Q100 160 140 165 Q180 170 240 180" stroke="#2C3E6B" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-dasharray="6 4"/>
+            <!-- Little person figure -->
+            <circle cx="78" cy="155" r="9" fill="#FAE0E0" stroke="#2C3E6B" stroke-width="2"/>
+            <line x1="78" y1="164" x2="78" y2="182" stroke="#2C3E6B" stroke-width="2" stroke-linecap="round"/>
+            <line x1="68" y1="170" x2="78" y2="167" stroke="#2C3E6B" stroke-width="2" stroke-linecap="round"/>
+            <line x1="88" y1="170" x2="78" y2="167" stroke="#2C3E6B" stroke-width="2" stroke-linecap="round"/>
+            <line x1="72" y1="182" x2="78" y2="182" stroke="#2C3E6B" stroke-width="2" stroke-linecap="round"/>
+            <line x1="84" y1="182" x2="78" y2="182" stroke="#2C3E6B" stroke-width="2" stroke-linecap="round"/>
+            <!-- Little star above person -->
+            <text x="70" y="142" font-size="12" fill="#E8C87A">⭐</text>
+            <!-- Birds -->
+            <path d="M190 60 Q195 55 200 60 M200 60 Q205 55 210 60" stroke="#7EB8D4" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <path d="M155 40 Q159 36 163 40 M163 40 Q167 36 171 40" stroke="#B8D4B8" stroke-width="2" fill="none" stroke-linecap="round"/>
+          </svg>
+          <p class="hero-card-title">職涯諮詢 × 生涯探索</p>
+          <p class="hero-card-desc">從迷惘到清晰，一起找到屬於你的方向與節奏。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-visual reveal">
+        <div style="position:relative;">
+          <div class="about-deco">🌿</div>
+          <div class="about-frame">
+            <div class="about-frame-inner">
+              <div class="about-avatar">🌸</div>
+              <div class="about-name-tag">莉安娜 Leanna</div>
+              <div class="about-badge-row">
+                <span class="chip">職涯諮詢師</span>
+                <span class="chip">生涯探索</span>
+                <span class="chip">求職輔導</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="about-content reveal">
+        <span class="section-label">關於我</span>
+        <h2 class="section-title">溫柔而堅定，<br>因為我也曾迷惘過</h2>
+        <p class="section-desc">
+          文組背景出身，走過傳統製造業到科技產業；歷經中小型家族企業，也在跨國集團工作過。
+          每一次的轉換，都讓我更靠近自己。
+        </p>
+        <div class="about-quote">
+          我相信，職涯不是一次選對，而是在每個階段更靠近適合自己的位置。如果你正感到迷惘，讓我陪你走一段吧！
+        </div>
+        <div class="about-tags">
+          <span class="tag">✦ 先聽再給方向</span>
+          <span class="tag">🌱 文組→科技業</span>
+          <span class="tag">🏢 家族企業 & 跨國集團</span>
+          <span class="tag">💛 真正理解你</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICE -->
+<section id="service">
+  <div class="section-inner">
+    <div class="reveal" style="text-align:center;">
+      <span class="section-label">服務項目</span>
+      <h2 class="section-title">你需要的，剛好都在這裡</h2>
+      <p class="section-desc" style="margin: 0 auto;">
+        無論你是剛起步、想轉換、還是對現況感到不確定——<br>
+        我們一起釐清，找到你真正想要的方向。
+      </p>
+    </div>
+    <div class="service-grid">
+      <div class="service-card reveal">
+        <span class="service-icon">🔭</span>
+        <h3>職涯諮詢</h3>
+        <p>一對一深度對話，從你的價值觀、優勢與生命經驗出發，找到當下最適合你的職涯方向。</p>
+        <span class="service-tag">線上 / 實體</span>
+      </div>
+      <div class="service-card reveal">
+        <span class="service-icon">🗺️</span>
+        <h3>生涯探索</h3>
+        <p>適合對未來還很模糊的你。透過有系統的探索工具與對話，逐步描繪出你的理想樣貌。</p>
+        <span class="service-tag">系統化探索</span>
+      </div>
+      <div class="service-card reveal">
+        <span class="service-icon">📝</span>
+        <h3>求職輔導</h3>
+        <p>包含履歷健檢、自傳撰寫建議、面試模擬與回饋，讓你帶著準備好的狀態走進面試間。</p>
+        <span class="service-tag">履歷 × 面試</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="section-inner">
+    <div class="reveal" style="text-align:center;">
+      <span class="section-label">合作流程</span>
+      <h2 class="section-title">你只需要踏出第一步</h2>
+      <p class="section-desc" style="margin: 0 auto;">
+        從第一次聯繫到你拿到清晰的行動計劃，我們會一起走完這段旅程。
+      </p>
+    </div>
+    <div class="process-steps">
+      <div class="process-step reveal">
+        <div class="step-num">01</div>
+        <div class="step-body">
+          <h3>✉ 初次聯繫 · 免費初談</h3>
+          <p>傳訊給我，簡單說說你目前的狀況與需求。初談約 20–30 分鐘，讓彼此先認識、確認合作方向。</p>
+        </div>
+      </div>
+      <div class="process-connector"></div>
+      <div class="process-step reveal">
+        <div class="step-num">02</div>
+        <div class="step-body">
+          <h3>🌿 深度探索 · 傾聽與挖掘</h3>
+          <p>正式諮詢開始——我會先聽你說，從你的故事、經歷與感受中，一起找出真正的核心議題。</p>
+        </div>
+      </div>
+      <div class="process-connector"></div>
+      <div class="process-step reveal">
+        <div class="step-num">03</div>
+        <div class="step-body">
+          <h3>🔭 方向梳理 · 打開可能性</h3>
+          <p>在充分了解你之後，我們一起從你的優勢與價值觀出發，整理出幾條值得探索的方向。</p>
+        </div>
+      </div>
+      <div class="process-connector"></div>
+      <div class="process-step reveal">
+        <div class="step-num">04</div>
+        <div class="step-body">
+          <h3>🗺️ 具體行動 · 帶你往前走</h3>
+          <p>最終你會得到一份清晰的職涯方向與下一步的具體行動計劃，帶著信心往前走。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST -->
+<section id="trust">
+  <div class="section-inner">
+    <div class="reveal" style="text-align:center;">
+      <span class="section-label">為什麼選擇我</span>
+      <h2 class="section-title">我不只是顧問，<br>我是走過的人</h2>
+    </div>
+    <div class="trust-grid">
+      <div class="trust-card reveal">
+        <span class="trust-icon">👂</span>
+        <h3>先聽，再給建議</h3>
+        <p>我的諮詢從不急著「給答案」，每一個方向都從真正理解你開始。</p>
+      </div>
+      <div class="trust-card reveal">
+        <span class="trust-icon">🌏</span>
+        <h3>跨域真實經歷</h3>
+        <p>文組出身、橫跨製造業與科技業、家族企業與跨國集團——我的轉換是真實走過的。</p>
+      </div>
+      <div class="trust-card reveal">
+        <span class="trust-icon">📋</span>
+        <h3>具體行動，不是空談</h3>
+        <p>每次諮詢結束，你都會帶走清晰方向與可以立即執行的下一步。</p>
+      </div>
+    </div>
+    <div class="trust-banner reveal">
+      <div class="trust-banner-text">
+        <h3>✦ 無論你在哪個階段，都值得被好好陪伴</h3>
+        <p>第一次諮詢，從免費初談開始。沒有壓力，只有真誠的對話。</p>
+      </div>
+      <a href="#contact" class="btn-light">立刻預約 →</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="contact-inner">
+      <div class="reveal">
+        <span class="section-label">聯絡我</span>
+        <h2 class="section-title">你好，我在這裡 ✦</h2>
+        <p class="section-desc" style="margin: 0 auto;">
+          傳一封訊息給我，說說你的狀況就好。<br>
+          不需要準備好，只需要踏出這一步。
+        </p>
+      </div>
+      <div class="contact-card reveal">
+        <!-- SVG decorative element -->
+        <svg viewBox="0 0 320 80" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:320px;margin:0 auto 1.5rem;display:block;">
+          <text x="20" y="52" font-family="serif" font-size="13" fill="#8A8A9A">「 讓我陪你走一段，找到屬於你的方向 」</text>
+          <text x="260" y="72" font-size="16" fill="#E8C87A">✦</text>
+          <text x="10" y="72" font-size="10" fill="#B8D4B8">✦</text>
+        </svg>
+        <div class="contact-links">
+          <a class="contact-link" href="mailto:fairy.a.career@gmail.com">
+            <div class="contact-link-icon">✉</div>
+            <div class="contact-link-body">
+              <div class="contact-link-label">Email</div>
+              <div class="contact-link-value">fairy.a.career@gmail.com</div>
+            </div>
+          </a>
+          <a class="contact-link" href="https://line.me/ti/p/@582ixbhk" target="_blank" rel="noopener">
+            <div class="contact-link-icon">💬</div>
+            <div class="contact-link-body">
+              <div class="contact-link-label">Line ID</div>
+              <div class="contact-link-value">@582ixbhk</div>
+            </div>
+          </a>
+        </div>
+        <p class="contact-note">✦ 通常在 1–2 個工作天內回覆，期待與你相遇 🌿</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <strong>莉安娜 · 職涯諮詢師</strong> &nbsp;|&nbsp; fairy.a.career@gmail.com &nbsp;|&nbsp; Line: @582ixbhk<br>
+  <span style="margin-top:0.5rem;display:block;">✦ 每一段職涯，都值得被認真對待 ✦</span>
+</footer>
+
+<script>
+  // Mobile menu
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+  function closeMenu() {
+    document.getElementById('mobileMenu').classList.remove('open');
+  }
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Stagger service/trust cards
+  document.querySelectorAll('.service-grid .reveal, .trust-grid .reveal').forEach((el, i) => {
+    el.style.transitionDelay = (i * 0.1) + 's';
+  });
+</script>
+</body>
+</html>
